@@ -30,6 +30,23 @@ be assumed to be a foreground color.
 Colors can be specified either by name, or with an ANSI color number (0-255).  Available color
 names: `black`, `blue`, `green`, `red`, `cyan`, `magenta`, `yellow`, and `white`.
 
+
+If no styles are specified, the following default styles will be used:
+
+* `bold,yellow`
+* `bold,green`
+* `bold,cyan`
+* `bold,magenta`
+* `bold,red,intense`
+* `bold,blue,intense`
+* `underline,yellow`
+* `underline,green`
+* `underline,cyan`
+* `underline,magenta`
+* `underline,red,intense`
+* `underline,blue,intense`
+
+
 Example Text Styles
 -------------------
 

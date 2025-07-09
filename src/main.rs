@@ -1,10 +1,8 @@
-#![allow(unused)]
 
-//use termcolor::{BufferWriter, Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 use clap::Parser;
 use regex::{Regex, RegexBuilder};
-use log::{debug, error, info, trace, warn};
+use log::{debug, trace};
 use env_logger::Env;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Write};
@@ -86,7 +84,7 @@ fn main() {
 fn process_file<R: BufRead>(path: &String, reader: R, estyles: &Vec<ExpressionStyle>) -> std::io::Result<()> {
     trace!("processing: {:?}", path);
     let mut stdout = StandardStream::stdout(ColorChoice::Always);
-    for (lr, ln) in reader.lines().zip(1..) {
+    for (lr, _ln) in reader.lines().zip(1..) {
         let line = lr.unwrap();
         let mut matches: Vec<_> = Vec::<RangeStyle>::new();
         for estyle in estyles {
@@ -118,9 +116,9 @@ fn process_file<R: BufRead>(path: &String, reader: R, estyles: &Vec<ExpressionSt
             if pos < line.len() {
                 let _ = write!(&mut stdout, "{}", &line[pos..]);
             }
-            writeln!(&mut stdout, "");
+            let _ = writeln!(&mut stdout, "");
         } else {
-            writeln!(&mut stdout, "{}", &line);
+            let _ = writeln!(&mut stdout, "{}", &line);
         }
     }
     Ok(())
